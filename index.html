@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Object Assignment</title>
+</head>
+<body>
+        <div id="mainDiv">
+            <form>
+                <fieldset>
+                    <legend>Personal Information</legend>
+                    <table>
+                        <tr>
+                            <td>First Name</td>
+                            <td><input id="firstName" type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td><input type="text" id="lastName"></td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth</td>
+                            <td>
+                                <input type="text" id="birthMonth" class="date" maxlength="2">
+                                -
+                                <input type="text" id="birthDay" class="date" maxlength="2">
+                                -
+                                <input type="text" id="birthYear" class="date" style="width: 3rem;" maxlength="4">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Departing From</td>
+                            <td><input type="text" id="cityLeave"></td>
+                        </tr>
+                        <tr>
+                            <td>Going To</td>
+                            <td><input type="text" id="cityDest"></td>
+                        </tr>
+                        <tr>
+                            <td>Date Leaving</td>
+                            <td>
+                                <input type="text" id="leaveMonth" class="date" maxlength="2">
+                                -
+                                <input type="text" id="leaveDay" class="date" maxlength="2">
+                                -
+                                <input type="text" id="leaveYear" class="date" style="width: 3rem;" maxlength="4">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Date Returning</td>
+                            <td>
+                                <input type="text" id="returnMonth" class="date" maxlength="2">
+                                -
+                                <input type="text" id="returnDay" class="date" maxlength="2">
+                                -
+                                <input type="text" id="returnYear" class="date" style="width: 3rem;" maxlength="4">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Bags Bringing</td>
+                            <td><input type="text" id="bags"></td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top;">Type of Meal</td>
+                            <td>
+                                <input type="radio" name="mealSelect" id="mealSelectOne">
+                                <label for="mealSelectOne">Chicken</label><br>
+                                <input type="radio" name="mealSelect" id="mealSelectTwo">
+                                <label for="mealSelectTwo">Fish</label><br>
+                                <input type="radio" name="mealSelect" id="mealSelectThree">
+                                <label for="mealSelectThree">Vegetarian</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top;">Extras</td>
+                            <td>
+                                <input type="checkbox" id="legroom">
+                                <label for="legroom">Legroom</label><br>
+                                <input type="checkbox" id="windowSeat">
+                                <label for="windowSeat">Window Seat</label><br>
+                                <input type="checkbox" id="headphones">
+                                <label for="headphones">Headphones</label><br>
+                                <input type="checkbox" id="extraFood">
+                                <label for="extraFood">Extra Food</label>
+                            </td>
+                        </tr>
+                    </table>
+                    <button onclick="createPerson()">Confirm</button>
+                </fieldset>
+            </form>
+        </div>
+        <script src="js/scripts.js"></script>
+</body>
+</html>

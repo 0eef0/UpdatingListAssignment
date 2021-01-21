@@ -1,0 +1,11 @@
+div#mainDiv{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    background-color: rgb(100,100,100);
+    padding: 1rem;
+}
+input.date{
+    width: 2rem;
+}
