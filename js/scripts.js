@@ -86,14 +86,45 @@ function createPerson(){
 
 // this puts database entries on the site
 function addDatabaseEntry(name, id){
-    document.getElementById("database").innerHTML += '<div id="database">'+
-'            <div class="databaseEntry">'+
+    document.getElementById("database").innerHTML +=
+'            <div class="databaseEntry" onclick="showPerson('+ currentIndex +')">'+
 '                <table>'+
 '                    <tr>'+
 '                        <td style="width: 13rem">Name: '+ name +'</td>'+
 '                        <td style="text-align: right, width: 50%">ID: '+ id + '</td>'+
 '                    </tr>'+
 '                </table>'+
-'            </div>'+
-'        </div>';
+'            </div>';
+}
+
+function showPerson(id){
+    document.getElementById("passenger").innerHTML = 
+    '<table>'+
+'            <tr>'+
+'                <td>First Name: '+ database[id].firstName +'</td>'+
+'                <td>Last Name: '+ database[id].lastName + '</td>'+
+'                <td>ID: '+ database[id].id + '</td>'+
+'            </tr>'+
+'            <tr>'+
+'                <td>Date of Birth: '+ database[id].dateOfBirth + '</td>'+
+'                <td>21+: '+ database[id].canDrink + '</td>'+
+'            </tr>'+
+'            <tr>'+
+'                <td>Departing From: '+ database[id].depart + '</td>'+
+'                <td>Going to: '+ database[id].destination + '</td>'+
+'            </tr>'+
+'            <tr>'+
+'                <td>Date Leaving: '+ database[id].dateLeave + '</td>'+
+'                <td>Date Returning: '+ database[id].dateReturn + '</td>'+
+'                <td>Trip Length: '+ database[id].timeGone + '</td>'+
+'            </tr>'+
+'            <tr>'+
+'                <td>Bags: '+ database[id].bags + '</td>'+
+'                <td>Meal: '+ database[id].firstName + '</td>'+
+'            </tr>'+
+'            <tr>'+
+'                <td>Extras: '+ database[id].firstName + '</td>'+
+'                <td>Extra Cost: '+ database[id].extraCost + '</td>'+
+'            </tr>'+
+'        </table>';
 }

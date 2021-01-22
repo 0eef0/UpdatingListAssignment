@@ -6,7 +6,9 @@ div#mainDiv{
     width: 60%;
     background-color: rgb(100,100,100);
     padding: 1rem;
-    grid-template-areas: 'personalInfo database';
+    grid-template-areas: 
+    'personalInfo searchBar'
+    'personalInfo database';
     grid-template-columns: 40% 60%;
 }
 div#personalInfo{
@@ -17,7 +19,12 @@ div#database{
     grid-area: database;
     background-color: blue;
     overflow: auto;
-    height: 26rem;
+    height: 20rem;
+}
+div#searchBar{
+    grid-area: searchBar;
+    background-color: grey;
+    height: 5rem;
 }
 
 /* This is what changes the width of the textboxes for the date input */
@@ -33,4 +40,15 @@ div.databaseEntry{
     margin-right: auto;
     margin-left: auto;
     margin-top: 0.5rem;
+}
+
+/* Styling for div that displays passenger */
+div#passenger{
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    margin-top: 1rem;
+    background-color: rgb(100,100,100);
+    padding: 1rem;
 }
