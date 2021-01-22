@@ -1,11 +1,36 @@
+/* Styles below are for the main div and the divs inside it */
 div#mainDiv{
-    display: block;
+    display: grid;
     margin-left: auto;
     margin-right: auto;
     width: 60%;
     background-color: rgb(100,100,100);
     padding: 1rem;
+    grid-template-areas: 'personalInfo database';
+    grid-template-columns: 40% 60%;
 }
+div#personalInfo{
+    grid-area: personalInfo;
+    margin-right: 1rem;
+}
+div#database{
+    grid-area: database;
+    background-color: blue;
+    overflow: auto;
+    height: 26rem;
+}
+
+/* This is what changes the width of the textboxes for the date input */
 input.date{
     width: 2rem;
+}
+
+/* This is the styling for the database entries that pop up on the right */
+div.databaseEntry{
+    padding: 1rem;
+    width: 80%;
+    background-color: red;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 0.5rem;
 }
