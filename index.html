@@ -64,7 +64,7 @@
                             <td><input type="text" id="bags"></td>
                         </tr>
                         <tr>
-                            <td style="vertical-align: top;">Type of Meal</td>
+                            <td style="vertical-align: top;">Type of Meal<br>(Optional)</td>
                             <td>
                                 <input type="radio" name="mealSelect" id="mealSelectOne">
                                 <label for="mealSelectOne">Chicken</label><br>
@@ -87,8 +87,11 @@
                                 <label for="extraFood">Extra Food</label>
                             </td>
                         </tr>
+                        <tr>
+                            <td><button onclick="createPerson();" type="button">Confirm</button></td>
+                            <td><p id="failure"></p></td>
+                        </tr>
                     </table>
-                    <button onclick="createPerson(); clearFields()" type="button">Confirm</button>
                 </fieldset>
             </form>    
         </div>

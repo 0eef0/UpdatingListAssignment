@@ -31,6 +31,10 @@ class Person{
 
 // function below uses the Person class to create a new person
 function createPerson(){
+    if(!checkFields()){
+        document.getElementById("failure").innerHTML = "Please Fill In All Fields";
+    }else{
+    document.getElementById("failure").innerHTML = "";
     //all of the variables below take in the information from the personal info section of the site
     var firstName = document.getElementById("firstName").value.toLowerCase();
     var lastName = document.getElementById("lastName").value.toLowerCase();
@@ -82,12 +86,15 @@ function createPerson(){
     //increments the passenger list counter
     currentIndex++;
     currentIdNumber++;
+
+    clearFields();
+    }
 }
 
 // this puts database entries on the site
 function addDatabaseEntry(name, id){
     document.getElementById("database").innerHTML +=
-'            <div class="databaseEntry" onclick="showPerson('+ id +')">'+
+'            <div class="databaseEntry" onclick="showPerson('+ (id - 1) +')">'+
 '                <table>'+
 '                    <tr>'+
 '                        <td style="width: 13rem">Name: '+ name +'</td>'+
@@ -110,6 +117,9 @@ function showPerson(id){
             break;
         case database[id].mealThree:
             food = "Vegetarian";
+            break;
+        default:
+            food = "None";
             break;
     }
     switch(true){
@@ -153,7 +163,7 @@ function showPerson(id){
 '                <td>Meal: '+ food + '</td>'+
 '            </tr>'+
 '            <tr>'+
-'                <td>Extras: '+ extras + '</td>'+
+'                <td style="width:50%">Extras: '+ extras + '</td>'+
 '                <td>Extra Cost: '+ database[id].extraCost + '</td>'+
 '            </tr>'+
 '        </table>';
@@ -200,4 +210,40 @@ function clearFields(){
     document.getElementById("headphones").checked = false;
     document.getElementById("windowSeat").checked = false;
     document.getElementById("extraFood").checked = false;
+}
+
+// function below checks if fields are filled or not
+function checkFields(){
+    switch(true){
+        case document.getElementById("firstName").value == '':
+            return false;
+        case document.getElementById("lastName").value == '':
+            return false;
+        case document.getElementById("birthDay").value == '':
+            return false;
+        case document.getElementById("birthMonth").value == '':
+            return false;
+        case document.getElementById("birthYear").value == '':
+            return false;
+        case document.getElementById("cityLeave").value == '':
+            return false;
+        case document.getElementById("cityDest").value == '':
+            return false;
+        case document.getElementById("leaveDay").value == '':
+            return false;
+        case document.getElementById("leaveMonth").value == '':
+            return false;
+        case document.getElementById("leaveYear").value == '':
+            return false;
+        case document.getElementById("returnDay").value == '':
+            return false;
+        case document.getElementById("returnYear").value == '':
+            return false;
+        case document.getElementById("bags").value == '':
+            return false;
+        case document.getElementById("returnMonth").value == '':
+            return false;
+        default:
+            return true;
+    }
 }

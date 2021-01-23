@@ -58,4 +58,11 @@ div#passenger{
     margin-top: 1rem;
     background-color: rgb(100,100,100);
     padding: 1rem;
+    color: white;
+}
+
+/* just fill in all the fields */
+p#failure{
+    margin: 0;
+    padding: 0;
 }
