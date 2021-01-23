@@ -14,17 +14,23 @@ div#mainDiv{
 div#personalInfo{
     grid-area: personalInfo;
     margin-right: 1rem;
+    background-color: rgb(50,50,50);
+    color: white;
 }
 div#database{
     grid-area: database;
-    background-color: blue;
+    background-color: rgb(50,50,50);
     overflow: auto;
     height: 20rem;
 }
 div#searchBar{
     grid-area: searchBar;
-    background-color: grey;
+    background-color: rgb(50,50,50);
     height: 5rem;
+}
+button{
+    background-color: rgb(25,25,25);
+    color: white;
 }
 
 /* This is what changes the width of the textboxes for the date input */
@@ -36,7 +42,8 @@ input.date{
 div.databaseEntry{
     padding: 1rem;
     width: 80%;
-    background-color: red;
+    background-color: rgb(25,25,25);
+    color:white;
     margin-right: auto;
     margin-left: auto;
     margin-top: 0.5rem;

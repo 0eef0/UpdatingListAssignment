@@ -88,13 +88,21 @@
                             </td>
                         </tr>
                     </table>
-                    <button onclick="createPerson()" type="button">Confirm</button>
+                    <button onclick="createPerson(); clearFields()" type="button">Confirm</button>
                 </fieldset>
             </form>    
         </div>
         <div id="searchBar">
-            <input type="text" id="search">
-            <button type="button">Search</button>
+            <table style="height: 100%; width: 100%;">
+                <tr style="text-align: center;"><td style="color: white; vertical-align: bottom;">You can search by name or ID</td></tr>
+                <tr style="text-align: center;">
+                    <td style="vertical-align: bottom;">
+                        <input type="text" id="search">
+                        <button type="button" onclick="searchForPassenger();">Search</button>
+                        <button type="button" onclick="clearSearch();">Clear Search</button>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div id="database">
             <!--

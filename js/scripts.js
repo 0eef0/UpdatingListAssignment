@@ -9,11 +9,11 @@ class Person{
     constructor(firstName, lastName, dateOfBirth, depart, destination, dateLeave, dateReturn, bags, mealOne, mealTwo, mealThree, legroom, windowSeat, headphones, extraFood, extraCost, canDrink, timeGone){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = dateOfBirth.toString().substring(4,15);
         this.depart = depart;
         this.destination = destination;
-        this.dateLeave = dateLeave;
-        this.dateReturn = dateReturn;
+        this.dateLeave = dateLeave.toString().substring(4,15);
+        this.dateReturn = dateReturn.toString().substring(4,15);
         this.bags = bags;
         this.mealOne = mealOne;
         this.mealTwo = mealTwo;
@@ -32,8 +32,8 @@ class Person{
 // function below uses the Person class to create a new person
 function createPerson(){
     //all of the variables below take in the information from the personal info section of the site
-    var firstName = document.getElementById("firstName").value;
-    var lastName = document.getElementById("lastName").value;
+    var firstName = document.getElementById("firstName").value.toLowerCase();
+    var lastName = document.getElementById("lastName").value.toLowerCase();
     var dateOfBirth = new Date(`${document.getElementById("birthMonth").value}-${document.getElementById("birthDay").value}-${document.getElementById("birthYear").value}`);
     var depart = document.getElementById("cityLeave").value;
     var destination = document.getElementById("cityDest").value;
@@ -74,7 +74,7 @@ function createPerson(){
 
     // code below updates the passenger list and database with name and id
     passengerList[currentIndex] = `${firstName[0].toUpperCase()}${firstName.substring(1)} ${lastName[0].toUpperCase()}${lastName.substring(1)} ${currentIdNumber}`;
-    database[currentIndex] = new Person(firstName, lastName, dateOfBirth, depart, destination, dateLeave, dateReturn, bags, mealOne, mealTwo, mealThree, legroom, windowSeat, headphones, extraFood, extraCost, canDrink, timeGone);
+    database[currentIndex] = new Person(firstName, lastName, dateOfBirth, depart, destination, dateLeave, dateReturn, bags, mealOne, mealTwo, mealThree, legroom, windowSeat, headphones, extraFood, `$${extraCost}`, canDrink, `${timeGone} Days`);
     
     //this puts the database entry on the site
     addDatabaseEntry(`${firstName[0].toUpperCase()}${firstName.substring(1)} ${lastName[0].toUpperCase()}${lastName.substring(1)}`, currentIdNumber)
@@ -87,7 +87,7 @@ function createPerson(){
 // this puts database entries on the site
 function addDatabaseEntry(name, id){
     document.getElementById("database").innerHTML +=
-'            <div class="databaseEntry" onclick="showPerson('+ currentIndex +')">'+
+'            <div class="databaseEntry" onclick="showPerson('+ id +')">'+
 '                <table>'+
 '                    <tr>'+
 '                        <td style="width: 13rem">Name: '+ name +'</td>'+
@@ -98,20 +98,50 @@ function addDatabaseEntry(name, id){
 }
 
 function showPerson(id){
+    var food = '';
+    var extras = [];
+    var is21 = '';
+    switch(true){
+        case database[id].mealOne:
+            food = "Chicken";
+            break;
+        case database[id].mealTwo:
+            food = "Fish";
+            break;
+        case database[id].mealThree:
+            food = "Vegetarian";
+            break;
+    }
+    switch(true){
+        case database[id].legroom:
+            extras.push("More Legroom");
+        case database[id].windowSeat:
+            extras.push("Window Seat");
+        case database[id].headphones:
+            extras.push("Headphones");
+        case database[id].extraFood:
+            extras.push("Extra Food");
+    }
+    if(database[id].canDrink){
+        is21 = "Yes";
+    }else{
+        is21 = "No";
+    }
+
     document.getElementById("passenger").innerHTML = 
     '<table>'+
 '            <tr>'+
-'                <td>First Name: '+ database[id].firstName +'</td>'+
-'                <td>Last Name: '+ database[id].lastName + '</td>'+
+'                <td>First Name: '+ `${database[id].firstName[0].toUpperCase()}${database[id].firstName.substring(1)}` +'</td>'+
+'                <td>Last Name: '+ `${database[id].lastName[0].toUpperCase()}${database[id].lastName.substring(1)}` + '</td>'+
 '                <td>ID: '+ database[id].id + '</td>'+
 '            </tr>'+
 '            <tr>'+
 '                <td>Date of Birth: '+ database[id].dateOfBirth + '</td>'+
-'                <td>21+: '+ database[id].canDrink + '</td>'+
+'                <td>21+: '+ is21 + '</td>'+
 '            </tr>'+
 '            <tr>'+
-'                <td>Departing From: '+ database[id].depart + '</td>'+
-'                <td>Going to: '+ database[id].destination + '</td>'+
+'                <td>Departing From: '+ `${database[id].depart[0].toUpperCase()}${database[id].depart.substring(1).toLowerCase()}` + '</td>'+
+'                <td>Going to: '+ `${database[id].destination[0].toUpperCase()}${database[id].destination.substring(1).toLowerCase()}` + '</td>'+
 '            </tr>'+
 '            <tr>'+
 '                <td>Date Leaving: '+ database[id].dateLeave + '</td>'+
@@ -120,11 +150,54 @@ function showPerson(id){
 '            </tr>'+
 '            <tr>'+
 '                <td>Bags: '+ database[id].bags + '</td>'+
-'                <td>Meal: '+ database[id].firstName + '</td>'+
+'                <td>Meal: '+ food + '</td>'+
 '            </tr>'+
 '            <tr>'+
-'                <td>Extras: '+ database[id].firstName + '</td>'+
+'                <td>Extras: '+ extras + '</td>'+
 '                <td>Extra Cost: '+ database[id].extraCost + '</td>'+
 '            </tr>'+
 '        </table>';
+}
+
+//code below is search thingy
+function searchForPassenger(){
+    document.getElementById("database").innerHTML = '';
+
+    var searchTerm = document.getElementById("search").value;
+    for(i = 0; i < database.length; i++){
+        if(searchTerm == database[i].firstName|| searchTerm == database[i].lastName || searchTerm == `${database[i].firstName} ${database[i].lastName}` || searchTerm == database[i].id){
+            addDatabaseEntry(`${database[i].firstName[0].toUpperCase()}${database[i].firstName.substring(1)} ${database[i].lastName[0].toUpperCase()}${database[i].lastName.substring(1)}`, database[i].id);
+        }
+    }
+}
+function clearSearch(){
+    document.getElementById("database").innerHTML = '';
+    for(i = 0; i < database.length; i++){
+        addDatabaseEntry(`${database[i].firstName[0].toUpperCase()}${database[i].firstName.substring(1)} ${database[i].lastName[0].toUpperCase()}${database[i].lastName.substring(1)}`, database[i].id);
+    }
+}
+
+//function below clears all fields
+function clearFields(){
+    document.getElementById("firstName").value = '';
+    document.getElementById("lastName").value = '';
+    document.getElementById("birthMonth").value = '';
+    document.getElementById("birthDay").value = '';
+    document.getElementById("birthYear").value = '';
+    document.getElementById("cityLeave").value = '';
+    document.getElementById("cityDest").value = '';
+    document.getElementById("leaveDay").value = '';
+    document.getElementById("leaveMonth").value = '';
+    document.getElementById("leaveYear").value = '';
+    document.getElementById("returnDay").value = '';
+    document.getElementById("returnYear").value = '';
+    document.getElementById("bags").value = '';
+    document.getElementById("returnMonth").value = '';
+    document.getElementById("mealSelectOne").checked = false;
+    document.getElementById("mealSelectTwo").checked = false;
+    document.getElementById("mealSelectThree").checked = false;
+    document.getElementById("legroom").checked = false;
+    document.getElementById("headphones").checked = false;
+    document.getElementById("windowSeat").checked = false;
+    document.getElementById("extraFood").checked = false;
 }
